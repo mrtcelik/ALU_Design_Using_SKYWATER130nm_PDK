@@ -1,0 +1,601 @@
+** sch_path: /home/halil/Desktop/design/xschem/8bit-ALU.sch
+**.subckt 8bit-ALU A1 A2 A3 A4 A5 A6 A7 A0 B1 B2 B3 B4 B5 B6 B7 B0 VDD VSS S0 S1 S2 Cout_adder
+*+ Cout_subtractor mux_out0 mux_out1 mux_out2 mux_out3 mux_out4 mux_out5 mux_out6 mux_out7
+*.ipin A1
+*.ipin A2
+*.ipin A3
+*.ipin A4
+*.ipin A5
+*.ipin A6
+*.ipin A7
+*.ipin A0
+*.ipin B1
+*.ipin B2
+*.ipin B3
+*.ipin B4
+*.ipin B5
+*.ipin B6
+*.ipin B7
+*.ipin B0
+*.ipin VDD
+*.ipin VSS
+*.ipin S0
+*.ipin S1
+*.ipin S2
+*.opin Cout_adder
+*.opin Cout_subtractor
+*.opin mux_out0
+*.opin mux_out1
+*.opin mux_out2
+*.opin mux_out3
+*.opin mux_out4
+*.opin mux_out5
+*.opin mux_out6
+*.opin mux_out7
+x1 A0 VDD net16 VSS B0 A1 net15 B1 A2 net14 B2 A3 net13 B3 A4 net12 B4 A5 net11 B5 A6 net10 B6 A7
++ net9 B7 or2_8bit
+x2 VDD A0 net8 VSS A1 net7 A2 net6 net5 A3 A4 net4 net3 A5 net2 A6 net1 A7 inv_8bit
+x3 A0 VDD net24 B0 VSS A1 net23 B1 A2 net22 B2 A3 net21 B3 A4 net20 B4 A5 net19 B5 A6 net18 B6 A7
++ net17 B7 xor2_8bit
+x4 A0 VDD net32 VSS B0 A1 net31 B1 A2 net30 B2 A3 net29 B3 A4 net28 B4 A5 net27 B5 A6 net26 B6 A7
++ net25 B7 and2_8bit
+x5 VDD VSS A0 net39 A1 net38 net40 B2 net37 net36 net33 net34 net35 A2 B3 A3 B1 B0 8bit_multiplier
+x6 VDD VSS net41 net47 net46 net42 net45 net43 net48 net44 A0 B0 Cout_adder B1 B2 A1 B3 B5 B4 A3 B7
++ A2 A7 B6 A5 A4 A6 8bit_adder
+x7 VDD VSS net49 net52 net50 net53 net56 net54 net51 net55 A0 B0 Cout_subtractor A1 A3 A2 A4 A7 A5
++ A6 B3 B1 B2 B4 B5 B7 B6 8bit_subtractor
+x8 VDD net1 VSS net9 S0 S1 S2 net17 net25 mux_out7 net33 net41 net49 GND 8bit_mux
+x9 VDD net2 VSS net10 S0 S1 S2 net18 net26 mux_out6 net34 net42 net50 GND 8bit_mux
+x10 VDD net3 VSS net11 S0 S1 S2 net19 net27 mux_out5 net35 net43 net51 GND 8bit_mux
+x11 VDD net4 VSS net12 S0 S1 S2 net20 net28 mux_out4 net36 net44 net55 GND 8bit_mux
+x12 VDD net5 VSS net13 S0 S1 S2 net21 net29 mux_out3 net37 net45 net56 GND 8bit_mux
+x13 VDD net6 VSS net14 S0 S1 S2 net22 net30 mux_out2 net38 net46 net52 GND 8bit_mux
+x14 VDD net7 VSS net15 S0 S1 S2 net23 net31 mux_out1 net39 net47 net53 GND 8bit_mux
+x15 VDD net8 VSS net16 S0 S1 S2 net24 net32 mux_out0 net40 net48 net54 GND 8bit_mux
+**.ends
+
+* expanding   symbol:  or/or2_8bit.sym # of pins=26
+** sym_path: /home/halil/Desktop/design/xschem/or/or2_8bit.sym
+** sch_path: /home/halil/Desktop/design/xschem/or/or2_8bit.sch
+.subckt or2_8bit  A0 VDD Y0 VSS B0 A1 Y1 B1 A2 Y2 B2 A3 Y3 B3 A4 Y4 B4 A5 Y5 B5 A6 Y6 B6 A7 Y7 B7
+*.ipin A0
+*.opin Y0
+*.ipin B0
+*.ipin VDD
+*.ipin VSS
+*.ipin A1
+*.ipin B1
+*.opin Y1
+*.ipin A2
+*.ipin B2
+*.opin Y2
+*.ipin A3
+*.ipin B3
+*.opin Y3
+*.ipin A4
+*.ipin B4
+*.opin Y4
+*.ipin A5
+*.ipin B5
+*.opin Y5
+*.opin Y6
+*.ipin A6
+*.ipin B6
+*.ipin B7
+*.ipin A7
+*.opin Y7
+x1 VSS VDD A0 B0 Y0 or2
+x2 VSS VDD A1 B1 Y1 or2
+x3 VSS VDD A2 B2 Y2 or2
+x4 VSS VDD A3 B3 Y3 or2
+x5 VSS VDD A4 B4 Y4 or2
+x6 VSS VDD A5 B5 Y5 or2
+x7 VSS VDD A6 B6 Y6 or2
+x8 VSS VDD A7 B7 Y7 or2
+.ends
+
+
+* expanding   symbol:  inv/inv_8bit.sym # of pins=18
+** sym_path: /home/halil/Desktop/design/xschem/inv/inv_8bit.sym
+** sch_path: /home/halil/Desktop/design/xschem/inv/inv_8bit.sch
+.subckt inv_8bit  VDD A0 B0 VSS A1 B1 A2 B2 B3 A3 A4 B4 B5 A5 B6 A6 B7 A7
+*.ipin A0
+*.ipin A1
+*.ipin A2
+*.ipin A3
+*.ipin A4
+*.ipin A5
+*.ipin A6
+*.ipin A7
+*.opin B0
+*.opin B1
+*.opin B2
+*.opin B3
+*.opin B4
+*.opin B5
+*.opin B6
+*.opin B7
+*.ipin VDD
+*.ipin VSS
+x1 A0 VDD VSS B0 inverter
+x2 A1 VDD VSS B1 inverter
+x3 A2 VDD VSS B2 inverter
+x4 A3 VDD VSS B3 inverter
+x5 A4 VDD VSS B4 inverter
+x6 A5 VDD VSS B5 inverter
+x7 A6 VDD VSS B6 inverter
+x8 A7 VDD VSS B7 inverter
+.ends
+
+
+* expanding   symbol:  xor2/xor2_8bit.sym # of pins=26
+** sym_path: /home/halil/Desktop/design/xschem/xor2/xor2_8bit.sym
+** sch_path: /home/halil/Desktop/design/xschem/xor2/xor2_8bit.sch
+.subckt xor2_8bit  A0 VDD Y0 B0 VSS A1 Y1 B1 A2 Y2 B2 A3 Y3 B3 A4 Y4 B4 A5 Y5 B5 A6 Y6 B6 A7 Y7 B7
+*.ipin A0
+*.ipin B0
+*.ipin A1
+*.ipin B1
+*.ipin A2
+*.ipin B2
+*.ipin A3
+*.ipin B3
+*.ipin A4
+*.ipin B4
+*.ipin A5
+*.ipin B5
+*.ipin A6
+*.ipin B6
+*.ipin A7
+*.ipin B7
+*.opin Y7
+*.opin Y6
+*.opin Y5
+*.opin Y4
+*.opin Y3
+*.opin Y2
+*.opin Y1
+*.opin Y0
+*.ipin VDD
+*.ipin VSS
+x1 A0 B0 VDD VSS Y0 xor2
+x2 A1 B1 VDD VSS Y1 xor2
+x3 A2 B2 VDD VSS Y2 xor2
+x4 A3 B3 VDD VSS Y3 xor2
+x5 A4 B4 VDD VSS Y4 xor2
+x6 A5 B5 VDD VSS Y5 xor2
+x7 A6 B6 VDD VSS Y6 xor2
+x8 A7 B7 VDD VSS Y7 xor2
+.ends
+
+
+* expanding   symbol:  and/and2_8bit.sym # of pins=26
+** sym_path: /home/halil/Desktop/design/xschem/and/and2_8bit.sym
+** sch_path: /home/halil/Desktop/design/xschem/and/and2_8bit.sch
+.subckt and2_8bit  A0 VDD Y0 VSS B0 A1 Y1 B1 A2 Y2 B2 A3 Y3 B3 A4 Y4 B4 A5 Y5 B5 A6 Y6 B6 A7 Y7 B7
+*.ipin A0
+*.ipin B0
+*.ipin VDD
+*.ipin VSS
+*.opin Y0
+*.ipin A1
+*.ipin B1
+*.opin Y1
+*.ipin A2
+*.ipin B2
+*.opin Y2
+*.ipin A3
+*.ipin B3
+*.opin Y3
+*.ipin A4
+*.ipin B4
+*.opin Y4
+*.ipin A5
+*.ipin B5
+*.opin Y5
+*.ipin A6
+*.ipin B6
+*.opin Y6
+*.ipin A7
+*.ipin B7
+*.opin Y7
+x1 VSS VDD A0 Y0 B0 and2
+x2 VSS VDD A1 Y1 B1 and2
+x3 VSS VDD A2 Y2 B2 and2
+x4 VSS VDD A3 Y3 B3 and2
+x5 VSS VDD A4 Y4 B4 and2
+x6 VSS VDD A5 Y5 B5 and2
+x7 VSS VDD A6 Y6 B6 and2
+x8 VSS VDD A7 Y7 B7 and2
+.ends
+
+
+* expanding   symbol:  8bit_multiplier.sym # of pins=18
+** sym_path: /home/halil/Desktop/design/xschem/8bit_multiplier.sym
+** sch_path: /home/halil/Desktop/design/xschem/8bit_multiplier.sch
+.subckt 8bit_multiplier  VDD VSS A0 mult_out1 A1 mult_out2 mult_out0 B2 mult_out3 mult_out4
++ mult_out7 mult_out6 mult_out5 A2 B3 A3 B1 B0
+*.iopin VDD
+*.iopin VSS
+*.ipin A0
+*.ipin A1
+*.ipin A2
+*.ipin A3
+*.ipin B1
+*.opin mult_out0
+*.ipin B0
+*.opin mult_out1
+*.ipin B2
+*.ipin B3
+*.opin mult_out2
+*.opin mult_out3
+*.opin mult_out4
+*.opin mult_out5
+*.opin mult_out6
+*.opin mult_out7
+x1 VDD VSS net9 net10 net11 mult_out1 net7 net1 net8 VSS net6 net3 net4 net5 net2 4bit_adder
+x2 VSS VDD A0 mult_out0 B0 and2
+x3 VSS VDD A1 net1 B0 and2
+x4 VSS VDD A2 net2 B0 and2
+x5 VSS VDD A3 net3 B0 and2
+x6 VSS VDD A0 net7 B1 and2
+x7 VSS VDD A1 net4 B1 and2
+x8 VSS VDD A2 net5 B1 and2
+x9 VSS VDD A3 net6 B1 and2
+x10 VDD VSS net18 net17 net16 mult_out2 net15 net11 net19 net8 net12 net9 net14 net13 net10
++ 4bit_adder
+x11 VSS VDD A0 net15 B2 and2
+x12 VSS VDD A1 net14 B2 and2
+x13 VSS VDD A2 net13 B2 and2
+x14 VSS VDD A3 net12 B2 and2
+x15 VDD VSS mult_out6 mult_out5 mult_out4 mult_out3 net23 net16 mult_out7 net19 net20 net18 net22
++ net21 net17 4bit_adder
+x16 VSS VDD A0 net23 B3 and2
+x17 VSS VDD A1 net22 B3 and2
+x18 VSS VDD A2 net21 B3 and2
+x19 VSS VDD A3 net20 B3 and2
+.ends
+
+
+* expanding   symbol:  8bit_adder.sym # of pins=27
+** sym_path: /home/halil/Desktop/design/xschem/8bit_adder.sym
+** sch_path: /home/halil/Desktop/design/xschem/8bit_adder.sch
+.subckt 8bit_adder  VDD VSS adder_out7 adder_out1 adder_out2 adder_out6 adder_out3 adder_out5
++ adder_out0 adder_out4 A0 B0 Cout B1 B2 A1 B3 B5 B4 A3 B7 A2 A7 B6 A5 A4 A6
+*.iopin VDD
+*.iopin VSS
+*.ipin A0
+*.ipin B0
+*.opin adder_out0
+*.ipin A1
+*.ipin B1
+*.opin adder_out1
+*.ipin A2
+*.ipin B2
+*.opin adder_out2
+*.ipin A3
+*.ipin B3
+*.opin adder_out3
+*.ipin A4
+*.ipin B4
+*.opin adder_out4
+*.ipin A5
+*.ipin B5
+*.ipin A6
+*.ipin B6
+*.opin adder_out5
+*.ipin A7
+*.ipin B7
+*.opin adder_out6
+*.opin adder_out7
+*.opin Cout
+x1 VDD VSS A0 adder_out0 B0 net1 VSS 1bit_adder
+x2 VDD VSS A1 adder_out1 B1 net2 net1 1bit_adder
+x3 VDD VSS A2 adder_out2 B2 net3 net2 1bit_adder
+x4 VDD VSS A3 adder_out3 B3 net4 net3 1bit_adder
+x5 VDD VSS A4 adder_out4 B4 net5 net4 1bit_adder
+x6 VDD VSS A5 adder_out5 B5 net6 net5 1bit_adder
+x7 VDD VSS A6 adder_out6 B6 net7 net6 1bit_adder
+x8 VDD VSS A7 adder_out7 B7 Cout net7 1bit_adder
+.ends
+
+
+* expanding   symbol:  8bit_subtractor.sym # of pins=27
+** sym_path: /home/halil/Desktop/design/xschem/8bit_subtractor.sym
+** sch_path: /home/halil/Desktop/design/xschem/8bit_subtractor.sch
+.subckt 8bit_subtractor  VDD VSS adder_out7 adder_out2 adder_out6 adder_out1 adder_out3 adder_out0
++ adder_out5 adder_out4 A0 B0 Cout A1 A3 A2 A4 A7 A5 A6 B3 B1 B2 B4 B5 B7 B6
+*.iopin VDD
+*.iopin VSS
+*.ipin A0
+*.ipin B0
+*.opin adder_out0
+*.ipin A1
+*.ipin B1
+*.opin adder_out1
+*.ipin A2
+*.ipin B2
+*.opin adder_out2
+*.ipin A3
+*.ipin B3
+*.opin adder_out3
+*.ipin A4
+*.ipin B4
+*.opin adder_out4
+*.ipin A5
+*.ipin B5
+*.ipin A6
+*.ipin B6
+*.opin adder_out5
+*.ipin A7
+*.ipin B7
+*.opin adder_out6
+*.opin adder_out7
+*.opin Cout
+x1 VDD VSS A0 adder_out0 B0 net1 VSS 1bit_adder
+x2 VDD VSS A1 adder_out1 net2 net3 net1 1bit_adder
+x3 VDD VSS A2 adder_out2 net4 net5 net3 1bit_adder
+x4 VDD VSS A3 adder_out3 net6 net7 net5 1bit_adder
+x5 VDD VSS A4 adder_out4 net8 net9 net7 1bit_adder
+x6 VDD VSS A5 adder_out5 net10 net11 net9 1bit_adder
+x7 VDD VSS A6 adder_out6 net12 net13 net11 1bit_adder
+x8 VDD VSS A7 adder_out7 net14 Cout net13 1bit_adder
+x9 B1 VDD VSS net2 inverter
+x10 B2 VDD VSS net4 inverter
+x11 B3 VDD VSS net6 inverter
+x12 B4 VDD VSS net8 inverter
+x13 B5 VDD VSS net10 inverter
+x14 B6 VDD VSS net12 inverter
+x15 B7 VDD VSS net14 inverter
+.ends
+
+
+* expanding   symbol:  8bit_mux.sym # of pins=14
+** sym_path: /home/halil/Desktop/design/xschem/8bit_mux.sym
+** sch_path: /home/halil/Desktop/design/xschem/8bit_mux.sch
+.subckt 8bit_mux  VDD I0 VSS I1 S0 S1 S2 I2 I3 mux_out I4 I5 I6 I7
+*.ipin I0
+*.ipin I1
+*.ipin I2
+*.ipin I3
+*.ipin I4
+*.ipin I5
+*.ipin I6
+*.ipin I7
+*.ipin VDD
+*.ipin VSS
+*.ipin S0
+*.ipin S1
+*.ipin S2
+*.opin mux_out
+x1 I1 VDD I0 VSS S0 net2 2x1_mux
+x2 I3 VDD I2 VSS S0 net1 2x1_mux
+x3 I5 VDD I4 VSS S0 net3 2x1_mux
+x4 I7 VDD I6 VSS S0 net4 2x1_mux
+x5 net1 VDD net2 VSS S1 net5 2x1_mux
+x6 net4 VDD net3 VSS S1 net6 2x1_mux
+x7 net6 VDD net5 VSS S2 mux_out 2x1_mux
+.ends
+
+
+* expanding   symbol:  or2.sym # of pins=5
+** sym_path: /home/halil/Desktop/design/xschem/or2.sym
+** sch_path: /home/halil/Desktop/design/xschem/or2.sch
+.subckt or2  VSS VDD A B out
+*.ipin A
+*.ipin B
+*.opin out
+*.ipin VSS
+*.ipin VDD
+XM1 net2 B VSS VSS sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM2 net2 B net1 net1 sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM3 net1 A VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM4 net2 A VSS VSS sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM5 out net2 VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM6 out net2 VSS VSS sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+.ends
+
+
+* expanding   symbol:  inv/inverter.sym # of pins=4
+** sym_path: /home/halil/Desktop/design/xschem/inv/inverter.sym
+** sch_path: /home/halil/Desktop/design/xschem/inv/inverter.sch
+.subckt inverter  in Vdd Vss out
+*.ipin in
+*.iopin Vdd
+*.iopin Vss
+*.opin out
+XM2 out in Vss Vss sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM11 out in Vdd Vdd sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+.ends
+
+
+* expanding   symbol:  xor2/xor2.sym # of pins=5
+** sym_path: /home/halil/Desktop/design/xschem/xor2/xor2.sym
+** sch_path: /home/halil/Desktop/design/xschem/xor2/xor2.sch
+.subckt xor2  A B VDD VSS out
+*.ipin A
+*.ipin B
+*.opin out
+*.ipin VDD
+*.ipin VSS
+XM1 out notA net3 net3 sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM2 out B net1 net1 sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM3 net3 notB VSS VSS sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM4 net1 notA VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM5 net4 A VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM6 out notB net4 net4 sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM7 out A net2 net2 sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM8 net2 B VSS VSS sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM9 notA A VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM10 notA A VSS VSS sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM11 notB B VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM12 notB B VSS VSS sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+.ends
+
+
+* expanding   symbol:  and2.sym # of pins=5
+** sym_path: /home/halil/Desktop/design/xschem/and2.sym
+** sch_path: /home/halil/Desktop/design/xschem/and2.sch
+.subckt and2  VSS VDD A out B
+*.ipin VDD
+*.ipin A
+*.ipin B
+*.ipin VSS
+*.opin out
+XM1 net1 A net2 net2 sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM2 net1 A VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM3 net2 B VSS VSS sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM4 net1 B VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM5 out net1 VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM6 out net1 VSS VSS sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+.ends
+
+
+* expanding   symbol:  adder/4bit_adder.sym # of pins=15
+** sym_path: /home/halil/Desktop/design/xschem/adder/4bit_adder.sym
+** sch_path: /home/halil/Desktop/design/xschem/adder/4bit_adder.sch
+.subckt 4bit_adder  VDD VSS adder_out3 adder_out2 adder_out1 adder_out0 A0 B0 Cout B3 A3 B2 A1 A2 B1
+*.iopin VDD
+*.iopin VSS
+*.ipin B0
+*.ipin A1
+*.ipin B1
+*.opin adder_out0
+*.ipin A2
+*.ipin B2
+*.opin adder_out1
+*.opin adder_out2
+*.ipin A3
+*.ipin B3
+*.opin adder_out3
+*.opin Cout
+*.ipin A0
+x1 VDD VSS A0 adder_out0 B0 net1 VSS 1bit_adder
+x2 VDD VSS A1 adder_out1 B1 net2 net1 1bit_adder
+x3 VDD VSS A2 adder_out2 B2 net3 net2 1bit_adder
+x4 VDD VSS A3 adder_out3 B3 Cout net3 1bit_adder
+.ends
+
+
+* expanding   symbol:  adder/1bit_adder.sym # of pins=7
+** sym_path: /home/halil/Desktop/design/xschem/adder/1bit_adder.sym
+** sch_path: /home/halil/Desktop/design/xschem/adder/1bit_adder.sch
+.subckt 1bit_adder  VDD VSS A adder_out B Cout Cin
+*.ipin A
+*.ipin B
+*.iopin VDD
+*.iopin VSS
+*.ipin Cin
+*.opin Cout
+*.opin adder_out
+x1 A B VDD VSS net1 xor2
+x2 VSS VDD A net2 B and2
+x3 VSS VDD net1 net3 Cin and2
+x4 net1 Cin VDD VSS adder_out xor2
+x5 net3 net2 VDD VSS Cout xor2
+x6 net1 Cin VDD VSS adder_out xor2
+.ends
+
+
+* expanding   symbol:  2x1_mux/2x1_mux.sym # of pins=6
+** sym_path: /home/halil/Desktop/design/xschem/2x1_mux/2x1_mux.sym
+** sch_path: /home/halil/Desktop/design/xschem/2x1_mux/2x1_mux.sch
+.subckt 2x1_mux  B VDD A VSS S out
+*.ipin VDD
+*.ipin A
+*.ipin B
+*.opin out
+*.ipin S
+*.ipin VSS
+XM1 net1 A net4 net4 sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM2 net3 A VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM3 net2 notS VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM4 net1 B net3 net3 sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM5 net1 S net2 net2 sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM6 net1 B net5 net5 sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM7 net4 notS VSS VSS sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM8 net5 S VSS VSS sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM9 notS S VSS VSS sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM10 notS S VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM11 out net1 VSS VSS sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM12 out net1 VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+.ends
+
+.GLOBAL GND
+.end
